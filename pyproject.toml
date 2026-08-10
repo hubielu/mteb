@@ -142,6 +142,11 @@ fusion-embedding = ["librosa>=0.10.0", "soundfile>=0.13.1", "torchvision>=0.22.1
 torch-vggish-yamnet = ["torch-vggish-yamnet==0.2.1"]
 vllm = ["vllm>=0.11.1"]
 moca = ["transformers>=4.49.0,<4.53"]
+# MiniCPM-o 4.5's remote code subclasses Qwen3Config (transformers>=4.51) and
+# imports is_flash_attn_2_available from transformers.utils, removed in v5.
+# flash-attn is optional: the vision tower guards the import behind a
+# capability check and falls back to sdpa.
+minicpm-o = ["transformers>=4.51.0,<5.0.0", "accelerate>=0.26.0", "librosa>=0.10.0", "soundfile>=0.13.1"]
 transformers-v4 = ["transformers<5"]
 siglip = ["sentencepiece>=0.2.0","protobuf>=3.0.0"]
 tipsv2 = ["sentencepiece>=0.2.0", "protobuf>=3.0.0"]
